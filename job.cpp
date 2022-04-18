@@ -1,97 +1,99 @@
-#include <iostream>
-#include <string.h>
-#include "job.h"
+#include "Job.h"
 
-char const emptystr[1] = "";
 
-using namespace std;
-
-Job :: Job()
+Job::Job()
 {
-  
-  cout<<"The Constructor of Job class is called and initialized with NULL paramters"<<endl;
+    cout << "Job default constructor activated" << endl;
+    Job::setTitle((char*)" ");
+    Job::setSalary(0);
+    Job::setDepartment(NONE);
+    cout << "Title: " << Job::getTitle() << endl;
+    cout << "Salary: " << Job::getSalary() << endl;
+    cout << "Department: " << Job::getDepartment() <<endl;
+};
 
-  this->title = new char[40] + 1;
-  if(this->title == NULL)
-  {
-    cout<<"There's no enough memory for title in job class\n"<<endl;
-  }
-  setTitle(emptystr);
-  setSalary(0);
+Job::Job(char* title, int salary, DepartmentEnum departmenmt)
+{
+    cout << "Job constructor activated" << endl;
+    Job::setTitle(title);
+    Job::setSalary(salary);
+    Job::setDepartment(NONE);
+    cout << "Title: " << Job::getTitle() << endl;
+    cout << "Salary: " << Job::getSalary() << endl;
+    cout << "Department: " << Job::getDepartment() <<endl;
+};
+
+Job::~Job()
+{
+    cout << "Job destructor is called" << endl;
+    delete title;
+};
+
+void Job::setTitle(char* title)
+{
+    while (title == NULL)
+    {
+        cout << "Input is not valid" << endl;
+        cin >> title;
+    }
+    Job::title = new char[strlen(title)+1];
+    strcpy(Job::title, title);
+};
+
+char* Job::getTitle()
+{
+     if(Job::title == NULL)
+    {
+        cout << "title field is empty" << endl;
+        return NULL;
+
+    }
+    //cout << "title: " << Job::title <<endl;
+    return Job::title;
+};
+
+void Job::setSalary(int salary)
+{
+
+    while (salary < 0)
+    {
+        cout << "Input is not valid" << endl;
+        cin >> salary;
+    }
+    if (strcmp(Job::getTitle(), (char*)"UnEmployed") == 0)
+    {
+        cout << "Unemployed person can't set a salary, first set a job" << endl;
+        return;
+    }
+    Job::salary = salary;
+};
+
+int Job::getSalary()
+{
+
+    //cout << Job::salary <<endl;
+    return Job::salary;
+};
+
+void Job::setDepartment(DepartmentEnum department)
+{
+    Job::department = department;
+};
+
+DepartmentEnum Job::getDepartment()
+{
+    return Job::department;
+};
+
+int Job::Work()
+{
+    return Job::getSalary();
 }
 
-Job :: ~Job()
+void Job::Retire()
 {
-   delete this->title;
-   cout<<"Destructor for Job class initalized"<<endl;
-}
-
-Job :: Job (char const *Title, int Salary, departmentenum department)
-{
-  setTitle(Title);
-  setSalary(Salary);
-  setDepartment(department);
-}
-
-Job::Job(Job& copyJob)
-{
-  *this = copyJob;  
-}
-
-Job& Job:: operator = (const Job& assignJob)
-{
-  delete [] title; 
-  title = new char[strlen(assignJob.title)+1]; 
-  strcpy(title,assignJob.title); 
-  salary = assignJob.salary; 
-  department = assignJob.department; 
-  return *this; 
-}
-
-void Job :: setTitle(char const *new_title)
-{
-  this->title = new char[strlen(new_title)];
-  strcpy(this->title, new_title);
-}
-
-char* Job:: getTitle() { return this->title; }
-
-void Job :: setSalary(int Salary)
-{
-  if(Salary < 0 )
-  {
-    cout<<"Error! salary cannot be minus\n"<<endl;
-  }
-  else
-  {
-    this->salary = Salary;
-  }
-}
-
-int Job :: getSalary() { return this->salary; }
-
-void Job :: setDepartment(departmentenum department)
-{
-  
-  if(department > 4)
-  {
-    cout<<"Error! department must be between 0 - 4!\n"<<endl;
-  }
-  else if (department == 0)
-  {
-    setSalary(0);
-  }
-  else
-  {  
-    this->department = department;
-  }
-}
-
-departmentenum Job :: getDepartment() { return this->department; }
-
-void Job :: Retire()
-{
-  setTitle(emptystr);
-  setDepartment(NONE);
-  setSalary(0);
+    // cout << "You have retired" << endl;
+     Job::setTitle((char*)"UnEmployed");
+     Job::salary = 0;
+     Job::setDepartment(NONE);
 }

@@ -1,43 +1,44 @@
 #include <iostream>
-#include "person.h"
+#include <cstring>
+#include "Person.h"
 
-using namespace std;
-
-int main()
+int main()  // מגישים: אילי אזולאי 318249828
+            // בנימין ללוש 328944657
 {
-    Address Hade_Address("David Noi", "Akko", 2431710);
-    Job Hade_Job("Manager", 2000, Art);
-    Person Hade;
-    Person *Hade2 = new Person("HadeB", "050123012", "Hadea@gmail.com", Hade_Address, Hade_Job);
-    Hade.setName("Hade");
-    Hade.setPhoneNumber("0549752736");
-    Hade.setEmail("HadeBayaa@gmail.com");
-    Hade.setAddress("Harakon 11", "Ramat Gan", 224123);
+    cout << endl;
+    Person defaultman;
+    cout << endl;
+
+    Address IlaiAddress((char*)"azulay", (char*)"hadera", 56745);
+    cout << endl;
+    Address BenjaminAddress((char*)"lalush", (char*)"raanana", 75675);
+    cout << endl;
+
+    Job IlaiJob((char*)"programmer", 26000, NONE) ;
+    cout << endl;
+    Job BenjaminJob((char*)"programmer", 26000, NONE);
+    cout << endl;
+
+    Person ilai((char*)"ilai",(char*)"0507353577",(char*)"ilai@gmail.com", IlaiAddress, IlaiJob);
+    cout << endl;
+    Person* benjamin = new Person((char*)"benjamin",(char*)"0502450426", (char*)"benjamin@gmail.com", BenjaminAddress, BenjaminJob);
+    cout << endl;
+
+    ilai.setWork();
+    ilai.OrderFood(IlaiAddress, 60);
+    ilai.retire();
+    cout << ilai.getName() << " retired" << endl;
+    cout << endl;
+
+    benjamin->setWork();
+    benjamin->OrderFood(BenjaminAddress,60);
+    benjamin->retire();
+    cout << benjamin->getName() << " retired" << endl;
+    cout << endl;
+
+    delete benjamin;
+
+
+
     
-
-    cout<<"\n" << endl;
-    cout<<"Name is: "<< Hade.getName() << endl;
-    cout<<"Phone is: "<< Hade.getPhoneNumber() << endl;
-    cout<<"Email is: "<< Hade.getEmail() << endl;
-    cout<<"Street is: "<< Hade.getStreet() << endl;
-    cout <<"City is: " << Hade.getCity() << endl;
-    cout <<"Postal code is: "<< Hade.getPostalCode() << endl;
-    Hade.Work();
-    cout<<"\n--------------------------------\n" << endl;
-
-    cout<<"Name is: "<< Hade2->getName() << endl;
-    cout<<"Phone is: "<< Hade2->getPhoneNumber() << endl;
-    cout<<"Email is: "<< Hade2->getEmail() << endl;
-    cout<<"Street is: " << Hade2->getStreet() << endl;
-    cout<<"City is: " << Hade2->getCity() << endl;
-    cout<<"Postal Code is: "<< Hade2->getPostalCode() << endl;
-    cout<<"Job title is: " << Hade2->getJobTitle()<<endl;
-    cout<<"Salary is: "<< Hade2->getsalary()<< endl;
-    cout<<"\n" << endl;
-
-    return 0;
 }
-
-
-
-

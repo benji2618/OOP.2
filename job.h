@@ -1,24 +1,29 @@
-enum departmentenum {NONE,Product, Sales, Marketing, Art};
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+enum DepartmentEnum{NONE, Product, Sales, Marketing, Art};
 
 class Job
 {
-    char* title;
-    int salary;
-    departmentenum department;
-
     public:
 
     Job();
-    Job (char const *Title, int Salary, departmentenum department);
+    Job(char* title, int salary, DepartmentEnum departmenmt);
     ~Job();
-    Job(Job& copyJob); 
-    Job& operator = (const Job& assignJob); 
-    void setTitle(char const *title);
-    char *getTitle();
-    void setSalary(int Salary);
+    void setTitle(char* title);
+    char* getTitle();
+    void setSalary(int salary); // קובע את השכר שלו
     int getSalary();
-    void setDepartment(departmentenum department);
-    departmentenum getDepartment();
+    void setDepartment(DepartmentEnum department);
+    DepartmentEnum getDepartment();
+    int Work(); // קריאה לפונקציה עושה קבלת משכורת
     void Retire();
 
+    private:
+
+    char* title;
+    int salary;
+    DepartmentEnum department;
 };

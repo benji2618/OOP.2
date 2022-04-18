@@ -1,24 +1,26 @@
+#include <iostream>
+#include <cstring>
 
-
+using namespace std;
 
 class Address
 {
-    char *street;
-    char *city;
-    int PostalCode;
+    public:
 
-    public: 
-    
     Address();
-    Address(char const *newStr, char const *newCity, int newPoscod);
+    Address(char* street, char* City, int postalCode);
     ~Address();
-    Address(Address& copyAdress);
-    Address& operator = (const Address& assignAddress); 
-    void setStreet(char const *newStr);
-    char *getStreet();
-    void setCity(char const *newCity);
-    char *getCity();
-    void setPostalCode(int newPoscod);
+    void setStreet(char* street);
+    char* getStreet();
+    void setCity(char* city);
+    char* getCity();
+    void setPostalCode(int postalCode);
     int getPostalCode();
+
+    private:
+
+    char* street;
+    char* city;
+    int PostalCode;
 
 };

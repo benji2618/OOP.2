@@ -1,41 +1,38 @@
-#include "job.h"
-#include "address.h"
+#include <iostream>
+#include <cstring>
+#include "Address.h"
+#include "Job.h"
+
+using namespace std;
 
 class Person
 {
-    char *name;
-    char *phoneNumber;
-    char *email;
-    int savings;
-    Address address;
-    Job job;
-    
     public:
 
     Person();
-    Person(char const *new_name, char const *new_phoneNumber,char const *new_email, Address newAddress, Job newJob);
+    Person(char* name, char* phonenumber, char* email, Address &address, Job &job);
     ~Person();
-    Person(Person& copyPerson);
-    Person& operator = (const Person& assignPerson); 
-    void setName(char const *name);
-    char *getName();
-    void setPhoneNumber(char const *new_phoneNumber);
-    char *getPhoneNumber();
-    void setEmail(char const *new_email);
-    char *getEmail();
+    void setName(char* setname);
+    char* getName();
+    void setPhoneNumber(char* setphonenum);
+    char* getPhoneNumber(); 
+    void setEmail(char* setemail);
+    char* getEmail();
     int getSaving();
-    void setAddress(char const *newStreet, char const *newCity, int newPostCod);
-    int orderfood(Address address, int amount);
-    char *getStreet();
-    char *getCity();
-    int getPostalCode();
-    char* getJobTitle();
-    void setJobTitle(char const *newTitle);
-    int getsalary();
-    void setSavings(int new_savings);
-    int Work();
-
-
+    int OrderFood(Address address, int price);
+    void setWork();
+    void initSaving();
+    void retire();
     
 
+    private:
+
+    char* name;
+    char* phoneNumber;
+    char* email;
+    int saving;
+    Address address;
+    Job job;
+
 };
+
